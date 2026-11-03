@@ -35,13 +35,13 @@ function shell(content) {
   const nav = [['discover','Découvrir'],['projects','Projets'],['opportunities','Opportunités'],['workspace','Mon espace']];
   app.innerHTML = `
     <header class="site-header"><div class="header-inner">
-      <button class="brand" data-view="discover" aria-label="Accueil Aurore Talents"><span class="talent-sigil">✳</span><span class="brand-copy"><span>AURORE <b>TALENTS</b></span><small>LES LIENS FONT GRANDIR LES IDÉES</small></span></button>
+      <button class="brand" data-view="discover" aria-label="Accueil Eneles Talents"><span class="talent-sigil">✳</span><span class="brand-copy"><span>AURORE <b>TALENTS</b></span><small>LES LIENS FONT GRANDIR LES IDÉES</small></span></button>
       <nav class="desktop-nav" aria-label="Navigation principale">${nav.map(([id,label]) => `<button class="nav-link ${state.view===id?'active':''}" data-view="${id}">${label}</button>`).join('')}</nav>
       <div class="header-actions">${state.user ? `<button class="user-chip" data-view="workspace"><span class="avatar-mini">${e(initials(state.user.user_metadata?.display_name || state.user.email || 'A'))}</span><span>Mon espace</span></button>` : '<button class="button button-quiet" data-action="auth">Se connecter</button>'}<button class="button button-primary" data-view="workspace">Rejoindre le réseau <span>↗</span></button></div>
       <button class="mobile-menu" data-action="mobile-menu" aria-label="Ouvrir le menu">☰</button>
     </div><div class="mobile-nav" id="mobile-nav">${nav.map(([id,label])=>`<button class="nav-link" data-view="${id}">${label}</button>`).join('')}${state.user?'<button class="nav-link" data-action="signout">Se déconnecter</button>':'<button class="nav-link" data-action="auth">Se connecter</button>'}</div></header>
     <main>${content}</main>
-    <footer class="site-footer"><div class="footer-brand"><span class="talent-sigil">✳</span><span><b>Aurore Talents</b><small>Les liens font grandir les idées.</small></span></div><p>Un espace pour révéler les talents, rendre les projets visibles et créer des rencontres utiles.</p><div class="footer-links"><button data-view="projects">Découvrir les projets</button><button data-view="opportunities">Voir les opportunités</button><button data-view="workspace">Créer mon espace</button><a href="/diagnostic.html">Diagnostic du stockage ↗</a></div><small class="copyright">© ${new Date().getFullYear()} Aurore · Grandir ensemble, avec attention.</small></footer>`;
+    <footer class="site-footer"><div class="footer-brand"><span class="talent-sigil">✳</span><span><b>Eneles Talents</b><small>Les liens font grandir les idées.</small></span></div><p>Un espace pour révéler les talents, rendre les projets visibles et créer des rencontres utiles.</p><div class="footer-links"><button data-view="projects">Découvrir les projets</button><button data-view="opportunities">Voir les opportunités</button><button data-view="workspace">Créer mon espace</button><a href="/diagnostic.html">Diagnostic du stockage ↗</a></div><small class="copyright">© ${new Date().getFullYear()} Eneles · Grandir ensemble, avec attention.</small></footer>`;
 }
 
 function projectCard(project) {
@@ -52,7 +52,7 @@ function projectCard(project) {
     <div class="project-cover ${palette}"><div class="project-topline"><span class="project-category">${e(project.category || 'Projet')}</span><span class="cover-mark">✳</span></div><div class="project-monogram">${e((project.title || 'A').trim().slice(0,1).toUpperCase())}</div><span class="project-stage">${demo?'APERÇU FICTIF':e(project.stage || 'En mouvement')}</span></div>
     <div class="project-body"><div class="project-kicker">${demo?'EXEMPLE DE PRÉSENTATION':'PROJET · '+e(project.category || 'INITIATIVE')}</div><h3>${e(project.title)}</h3>${project.tagline?`<p class="project-tagline">${e(project.tagline)}</p>`:''}<p class="project-description">${e(project.description || 'Une initiative portée par une envie de faire avancer les choses.')}</p>
       <div class="project-meta"><span>⌖ ${e(project.location || 'Lieu à préciser')}</span><span>${e(author?.display_name || 'Porteur de projet')}</span></div>
-      <div class="project-foot"><span class="small-avatar">${e(initials(author?.display_name || 'AP'))}</span><span class="project-author">${e(author?.headline || (demo ? 'Texte d’illustration' : 'Communauté Aurore'))}</span><button class="icon-button" data-detail-project="${e(project.id)}" aria-label="Découvrir le projet ${e(project.title)}">↗</button></div>
+      <div class="project-foot"><span class="small-avatar">${e(initials(author?.display_name || 'AP'))}</span><span class="project-author">${e(author?.headline || (demo ? 'Texte d’illustration' : 'Communauté Eneles'))}</span><button class="icon-button" data-detail-project="${e(project.id)}" aria-label="Découvrir le projet ${e(project.title)}">↗</button></div>
     </div></article>`;
 }
 
@@ -61,7 +61,7 @@ function opportunityCard(opportunity) {
   const typeLabels = { bourse:'Bourse', stage:'Stage', emploi:'Emploi', mentorat:'Mentorat', concours:'Concours', partenariat:'Partenariat', autre:'Autre' };
   const icon = { bourse:'↗', stage:'⌑', emploi:'↗', mentorat:'◎', concours:'✳', partenariat:'⌘', autre:'◇' }[opportunity.opportunity_type] || '✳';
   return `<article class="opportunity-card">
-    <div class="opportunity-icon">${icon}</div><div class="opportunity-content"><div class="opportunity-kicker"><span>${demo?'APERÇU FICTIF':e(typeLabels[opportunity.opportunity_type] || opportunity.opportunity_type || 'Opportunité')}</span>${opportunity.deadline?`<span>Jusqu’au ${e(formatDate(opportunity.deadline))}</span>`:''}</div><h3>${e(opportunity.title)}</h3><p class="opportunity-org">${e(opportunity.organization || 'Communauté Aurore')}</p><p class="opportunity-description">${e(opportunity.description || 'Une occasion de rencontre, de progression ou de collaboration.')}</p><div class="opportunity-bottom"><span>⌖ ${e(opportunity.location || 'Lieu à préciser')}</span><button class="text-link" data-apply-id="${e(opportunity.id)}" ${demo?'data-demo="true"':''}>Découvrir <span>↗</span></button></div></div>
+    <div class="opportunity-icon">${icon}</div><div class="opportunity-content"><div class="opportunity-kicker"><span>${demo?'APERÇU FICTIF':e(typeLabels[opportunity.opportunity_type] || opportunity.opportunity_type || 'Opportunité')}</span>${opportunity.deadline?`<span>Jusqu’au ${e(formatDate(opportunity.deadline))}</span>`:''}</div><h3>${e(opportunity.title)}</h3><p class="opportunity-org">${e(opportunity.organization || 'Communauté Eneles')}</p><p class="opportunity-description">${e(opportunity.description || 'Une occasion de rencontre, de progression ou de collaboration.')}</p><div class="opportunity-bottom"><span>⌖ ${e(opportunity.location || 'Lieu à préciser')}</span><button class="text-link" data-apply-id="${e(opportunity.id)}" ${demo?'data-demo="true"':''}>Découvrir <span>↗</span></button></div></div>
   </article>`;
 }
 
@@ -72,7 +72,7 @@ function renderDiscover() {
     <section class="hero-wrap"><div class="hero container">
       <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> Le réseau des possibles</div>
         <h1>Le talent est un départ.<br><em>Le lien fait la suite.</em></h1>
-        <p class="hero-lead">Aurore Talents rapproche celles et ceux qui ont une idée, une compétence ou une envie d’agir. Faites connaître votre projet, trouvez un mentor et avancez avec les bonnes personnes.</p>
+        <p class="hero-lead">Eneles Talents rapproche celles et ceux qui ont une idée, une compétence ou une envie d’agir. Faites connaître votre projet, trouvez un mentor et avancez avec les bonnes personnes.</p>
         <div class="hero-actions"><button class="button button-primary button-large" data-view="workspace">Créer mon profil <span>↗</span></button><button class="button button-outline button-large" data-view="projects">Explorer les projets <span>↓</span></button></div>
         <div class="hero-proof"><span class="proof-stamp">✳</span><span><strong>Votre potentiel mérite un espace.</strong><small>Profils · Projets · Opportunités · Mentorat</small></span></div>
       </div>
@@ -82,18 +82,18 @@ function renderDiscover() {
       </div>
     </div></section>
     <section class="pill-strip"><div class="container pill-inner"><span><b>01</b> Révéler son talent</span><i></i><span><b>02</b> Faire connaître son projet</span><i></i><span><b>03</b> Trouver de l’accompagnement</span><i></i><span><b>04</b> Créer des liens durables</span></div></section>
-    <section class="section container"><div class="section-heading"><div><div class="eyebrow">UN RÉSEAU QUI AGIT</div><h2>Trois façons d’avancer.</h2><p>Les opportunités naissent des rencontres. Aurore Talents donne de la place aux personnes, aux idées et aux liens qui les font progresser.</p></div></div>
+    <section class="section container"><div class="section-heading"><div><div class="eyebrow">UN RÉSEAU QUI AGIT</div><h2>Trois façons d’avancer.</h2><p>Les opportunités naissent des rencontres. Eneles Talents donne de la place aux personnes, aux idées et aux liens qui les font progresser.</p></div></div>
       <div class="pillar-grid"><article class="pillar-card pillar-dark"><span class="pillar-index">01 / PROFILS</span><span class="pillar-icon">◉</span><h3>Montrez ce qui vous rend unique.</h3><p>Présentez votre parcours, vos compétences et ce que vous souhaitez apprendre ou transmettre.</p><button class="pillar-link" data-view="workspace">Créer un profil <span>↗</span></button><span class="pillar-bg">P</span></article><article class="pillar-card pillar-lime"><span class="pillar-index">02 / PROJETS</span><span class="pillar-icon">✳</span><h3>Faites sortir vos idées du carnet.</h3><p>Partagez une initiative, cherchez du soutien et rendez visibles les étapes déjà franchies.</p><button class="pillar-link" data-view="projects">Explorer les projets <span>↗</span></button><span class="pillar-bg">✳</span></article><article class="pillar-card pillar-cream"><span class="pillar-index">03 / OPPORTUNITÉS</span><span class="pillar-icon">↗</span><h3>Rencontrez le prochain possible.</h3><p>Repérez les appels, les mentors et les collaborations susceptibles de vous faire avancer.</p><button class="pillar-link" data-view="opportunities">Voir les opportunités <span>↗</span></button><span class="pillar-bg">↗</span></article></div>
     </section>
     <section class="section project-section"><div class="container"><div class="section-heading"><div><div class="eyebrow">DES IDÉES QUI PRENNENT FORME</div><h2>Les projets à découvrir.</h2><p>Un aperçu du type d’initiatives que la communauté pourra présenter après validation.</p></div><button class="text-link" data-view="projects">Tous les projets <span>↗</span></button></div>
-      ${state.projects.length ? '<div class="live-note"><span class="live-dot"></span> Projets publiés et visibles sur Aurore Talents</div>' : '<div class="live-note demo-note"><span class="live-dot"></span> Aperçus fictifs — les premiers projets réels apparaîtront après validation.</div>'}
+      ${state.projects.length ? '<div class="live-note"><span class="live-dot"></span> Projets publiés et visibles sur Eneles Talents</div>' : '<div class="live-note demo-note"><span class="live-dot"></span> Aperçus fictifs — les premiers projets réels apparaîtront après validation.</div>'}
       <div class="project-grid">${projects.slice(0,3).map(projectCard).join('')}</div>
     </div></section>
     <section class="section container opportunity-section"><div class="section-heading"><div><div class="eyebrow">LA BONNE RENCONTRE AU BON MOMENT</div><h2>De nouvelles portes à ouvrir.</h2><p>Mentorat, accompagnement, concours et partenariats auront leur espace, sans transformer les exemples en fausses offres.</p></div><button class="text-link" data-view="opportunities">Toutes les opportunités <span>↗</span></button></div>
       ${state.opportunities.length ? '' : '<div class="notice notice-demo">Les éléments marqués « Aperçu fictif » sont des exemples de présentation, pas des offres ouvertes.</div>'}
       <div class="opportunity-list">${opportunities.slice(0,2).map(opportunityCard).join('')}</div>
     </section>
-    <section class="closing-band container"><div class="closing-mark">✳</div><div><p class="eyebrow">TOUT COMMENCE PAR UN PREMIER LIEN</p><h2>Faites de la place à la suite.</h2><p>Créez votre profil. Les prochaines étapes se construiront avec vous.</p></div><button class="button button-dark-light button-large" data-view="workspace">Rejoindre Aurore Talents <span>↗</span></button><div class="closing-orbit"></div></section>
+    <section class="closing-band container"><div class="closing-mark">✳</div><div><p class="eyebrow">TOUT COMMENCE PAR UN PREMIER LIEN</p><h2>Faites de la place à la suite.</h2><p>Créez votre profil. Les prochaines étapes se construiront avec vous.</p></div><button class="button button-dark-light button-large" data-view="workspace">Rejoindre Eneles Talents <span>↗</span></button><div class="closing-orbit"></div></section>
   `);
 }
 
@@ -307,7 +307,7 @@ async function uploadR2Files(form) {
     await loadR2Files();
     if (message) message.textContent = 'Envoi terminé. Vérifiez ci-dessous que votre fichier apparaît dans la liste R2.';
   } catch (error) {
-    console.error('Aurore Talents R2 upload', error);
+    console.error('Eneles Talents R2 upload', error);
     r2Diagnostic('ÉCHEC : ' + (error?.message || 'erreur inconnue pendant l’envoi.'), 'error');
     if (message) message.textContent = error?.message || 'Envoi impossible.';
   } finally {
@@ -373,11 +373,11 @@ async function loadPublicData() {
     supabase.from('talent_profiles').select('id,display_name,handle,headline,bio,location,skills,interests,profile_type,created_at').eq('publication_status','published').order('created_at',{ascending:false}).limit(12)
   ]);
   if (!projectResult.error) state.projects = projectResult.data || [];
-  else console.warn('Aurore Talents projects', projectResult.error.message);
+  else console.warn('Eneles Talents projects', projectResult.error.message);
   if (!opportunityResult.error) state.opportunities = opportunityResult.data || [];
-  else console.warn('Aurore Talents opportunities', opportunityResult.error.message);
+  else console.warn('Eneles Talents opportunities', opportunityResult.error.message);
   if (!profileResult.error) state.profiles = profileResult.data || [];
-  else console.warn('Aurore Talents profiles', profileResult.error.message);
+  else console.warn('Eneles Talents profiles', profileResult.error.message);
 }
 
 async function loadWorkspaceData() {
@@ -388,7 +388,7 @@ async function loadWorkspaceData() {
     supabase.from('talent_opportunities').select('id,title,organization,category,opportunity_type,publication_status,submission_requested_at,created_at,updated_at').eq('owner_id',state.user.id).order('updated_at',{ascending:false}).limit(30),
     supabase.from('talent_applications').select('id,opportunity_id,application_status,created_at').eq('applicant_id',state.user.id).order('created_at',{ascending:false}).limit(30)
   ]);
-  if (profile.error && profile.error.code !== 'PGRST116') console.warn('Aurore Talents profile', profile.error.message);
+  if (profile.error && profile.error.code !== 'PGRST116') console.warn('Eneles Talents profile', profile.error.message);
   state.ownProfile = profile.data || null;
   state.ownProjects = projects.data || [];
   state.ownOpportunities = opportunities.data || [];
@@ -401,29 +401,29 @@ function showAuth(mode = 'signin') {
     return;
   }
   modalRoot.innerHTML = `<div class="modal-backdrop" id="auth-overlay"><section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"><button class="modal-close" data-action="close-modal" aria-label="Fermer">×</button><span class="talent-sigil modal-sigil">✳</span><div class="eyebrow">AURORE TALENTS</div><h2 id="auth-title">${mode==='signup'?'Faites grandir votre réseau.':'Heureux de vous retrouver.'}</h2><p>${mode==='signup'?'Créez un espace pour votre profil, vos projets et vos futures rencontres.':'Retrouvez votre espace et poursuivez vos projets.'}</p>        <div class="sso-entry">
-          <button class="button button-sso button-large full-width" type="button" data-action="aurore-id"><span class="sso-mark">ID</span><span class="sso-label">Continuer avec Aurore ID</span><span aria-hidden="true">↗</span></button>
-          <p class="sso-subtitle">Un accès unique pour les services Aurore.</p>
+          <button class="button button-sso button-large full-width" type="button" data-action="aurore-id"><span class="sso-mark">ID</span><span class="sso-label">Continuer avec Eneles ID</span><span aria-hidden="true">↗</span></button>
+          <p class="sso-subtitle">Un accès unique pour les services Eneles.</p>
           <div class="sso-divider"><span>ou avec votre compte local</span></div>
-        </div><form id="auth-form" data-mode="${mode}" class="auth-form">${mode==='signup'?'<label>Nom affiché<input name="display_name" autocomplete="name" required maxlength="100" placeholder="Comment vous appeler ?"></label>':''}<label>Adresse e-mail<input name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com"></label><label>Mot de passe<input name="password" type="password" minlength="8" autocomplete="${mode==='signup'?'new-password':'current-password'}" required placeholder="8 caractères minimum"></label><button class="button button-primary button-large full-width" type="submit">${mode==='signup'?'Créer mon espace':'Me connecter'} <span>↗</span></button><p class="auth-message" id="auth-message"></p></form><div class="auth-switch">${mode==='signup'?'Vous avez déjà un compte ?':'Nouveau dans le réseau ?'} <button data-auth-mode="${mode==='signup'?'signin':'signup'}">${mode==='signup'?'Se connecter':'Créer un compte'}</button></div><button class="sso-guest" type="button" data-action="close-modal">Visiter Aurore Talents sans compte</button><small class="auth-privacy">Vos données privées ne sont accessibles qu’à votre compte.</small></section></div>`;
+        </div><form id="auth-form" data-mode="${mode}" class="auth-form">${mode==='signup'?'<label>Nom affiché<input name="display_name" autocomplete="name" required maxlength="100" placeholder="Comment vous appeler ?"></label>':''}<label>Adresse e-mail<input name="email" type="email" autocomplete="email" required placeholder="vous@exemple.com"></label><label>Mot de passe<input name="password" type="password" minlength="8" autocomplete="${mode==='signup'?'new-password':'current-password'}" required placeholder="8 caractères minimum"></label><button class="button button-primary button-large full-width" type="submit">${mode==='signup'?'Créer mon espace':'Me connecter'} <span>↗</span></button><p class="auth-message" id="auth-message"></p></form><div class="auth-switch">${mode==='signup'?'Vous avez déjà un compte ?':'Nouveau dans le réseau ?'} <button data-auth-mode="${mode==='signup'?'signin':'signup'}">${mode==='signup'?'Se connecter':'Créer un compte'}</button></div><button class="sso-guest" type="button" data-action="close-modal">Visiter Eneles Talents sans compte</button><small class="auth-privacy">Vos données privées ne sont accessibles qu’à votre compte.</small></section></div>`;
   document.querySelector('#auth-overlay input')?.focus();
 }
 
 async function startAuroreIdSignIn(button) {
   const message = modalRoot.querySelector('#auth-message');
   if (!supabase) {
-    if (message) message.textContent = 'La connexion Aurore ID n’est pas disponible pour le moment. Réessayez plus tard.';
+    if (message) message.textContent = 'La connexion Eneles ID n’est pas disponible pour le moment. Réessayez plus tard.';
     return;
   }
   const label = button.querySelector('.sso-label');
   button.disabled = true;
-  if (label) label.textContent = 'Redirection vers Aurore ID…';
+  if (label) label.textContent = 'Redirection vers Eneles ID…';
   try {
     const { error } = await supabase.auth.signInWithOAuth({ provider: 'custom:aurore-id' });
     if (error) throw error;
   } catch (error) {
-    if (message) message.textContent = error?.message || 'La connexion avec Aurore ID n’a pas abouti. Vérifiez la configuration du fournisseur.';
+    if (message) message.textContent = error?.message || 'La connexion avec Eneles ID n’a pas abouti. Vérifiez la configuration du fournisseur.';
     button.disabled = false;
-    if (label) label.textContent = 'Continuer avec Aurore ID';
+    if (label) label.textContent = 'Continuer avec Eneles ID';
   }
 }
 

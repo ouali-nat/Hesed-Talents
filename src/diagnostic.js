@@ -49,7 +49,7 @@ async function run() {
       if (error) throw error;
       const session = data.session;
       check('Session utilisateur', session ? 'OK' : 'Test requis',
-        session ? 'Session présente ; aucun jeton n’est affiché.' : 'Connectez-vous à Aurore Talents dans ce même navigateur, puis relancez le diagnostic.');
+        session ? 'Session présente ; aucun jeton n’est affiché.' : 'Connectez-vous à Eneles Talents dans ce même navigateur, puis relancez le diagnostic.');
 
       const { error: dbError } = await client.from('talent_profiles').select('id', { head: true, count: 'exact' }).limit(1);
       check('Table talent_profiles', dbError ? 'Échec' : 'OK',

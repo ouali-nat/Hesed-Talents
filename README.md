@@ -1,6 +1,6 @@
-# Aurore Talents
+# Eneles Talents
 
-**Les talents se rencontrent. Les projets prennent leur élan.** Aurore Talents met en relation élèves, étudiants, mentors, partenaires et porteurs de projets au Burkina Faso et au-delà.
+**Les talents se rencontrent. Les projets prennent leur élan.** Eneles Talents met en relation élèves, étudiants, mentors, partenaires et porteurs de projets au Burkina Faso et au-delà.
 
 ## Stack
 - Vite 8 + JavaScript moderne
