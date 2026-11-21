@@ -1,6 +1,6 @@
-# Eneles Talents
+# Hesed Talents
 
-**Les talents se rencontrent. Les projets prennent leur élan.** Eneles Talents met en relation élèves, étudiants, mentors, partenaires et porteurs de projets au Burkina Faso et au-delà.
+**Les talents se rencontrent. Les projets prennent leur élan.** Hesed Talents met en relation élèves, étudiants, mentors, partenaires et porteurs de projets au Burkina Faso et au-delà.
 
 ## Stack
 - Vite 8 + JavaScript moderne
